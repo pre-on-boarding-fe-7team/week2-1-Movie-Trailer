@@ -1,8 +1,13 @@
 import React from 'react';
-import { Container } from './Main.style';
+import { Container, MyButton } from './Main.style';
 
 function Main() {
-  return <Container>This is MainPage</Container>;
+  return (
+    <Container>
+      This is MainPage
+      <MyButton>안녕!</MyButton>
+    </Container>
+  );
 }
 
 export default Main;
