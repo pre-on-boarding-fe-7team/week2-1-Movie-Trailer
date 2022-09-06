@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ROUTE } from './common/utils/constant';
 import Main from './pages/Main/Main';
 import NotFound from './pages/NotFound/NotFound';
-import UpComing from './pages/UpComing/UpComing';
+import UpComing from './pages/Upcoming/Upcoming';
 
 function App() {
   return (
