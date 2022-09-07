@@ -1,48 +1,42 @@
-// import { Box, ImageListItem, ImageListItemBar } from '@mui/material';
-// import { useEffect, useState } from 'react';
-// import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
-// import { get } from '../../api/api';
-// import { MovieImageList } from './Search.style.js';
-// import Star from './Star/Star.jsx';
+import { getSearchMovie } from '../../api/api.js';
+import { Bold, Box, Title } from './Search.style.js';
+import MovieList from '../../components/MovieList/MovieList.jsx';
+import { Backdrop, CircularProgress } from '@mui/material';
 
-// const Search = () => {
-//   const [movies, setMovies] = useState([]);
-//   const [searchParams] = useSearchParams();
-//   const query = searchParams.get('query');
+const Search = () => {
+  const { state } = useLocation();
+  const query = state ? state.query : '';
+  const { data: movies, status } = useQuery(['searchMovie', query], () => getSearchMovie(query));
 
-//   useEffect(() => {
-//     const searchMovies = async () => {
-//       const url = `/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&query=${query}`;
-//       const res = await get(url);
-//       setMovies(res.results);
-//     };
-//     searchMovies();
-//   }, [query]);
+  if (status === 'loading') {
+    return (
+      <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  }
 
-//   return (
-//     <Box>
-//       {movies.length > 0 ? (
-//         <>
-//           <p>"{query}"에 대한 검색 결과</p>
-//           <MovieImageList cols={4} gap={8}>
-//             {movies.map(({ id, title, vote_average, poster_path }) => (
-//               <ImageListItem key={id}>
-//                 <img
-//                   src={`${process.env.REACT_APP_IMAGE_URL}${poster_path}`}
-//                   alt={title}
-//                   loading="lazy"
-//                 />
-//                 <ImageListItemBar title={title} subtitle={<Star value={vote_average / 2} />} />
-//               </ImageListItem>
-//             ))}
-//           </MovieImageList>
-//         </>
-//       ) : (
-//         <p>입력하신 "{query}"에 대한 검색 결과가 없습니다.</p>
-//       )}
-//     </Box>
-//   );
-// };
+  if (status === 'error') {
+    return alert('error');
+  }
 
-// export default Search;
+  return (
+    <Box>
+      {movies?.length > 0 ? (
+        <>
+          <Title variant="h6">
+            "<Bold>{query}</Bold>"에 대한 검색 결과
+          </Title>
+          <MovieList movies={movies} />
+        </>
+      ) : (
+        <p>입력하신 "{query}"에 대한 검색 결과가 없습니다.</p>
+      )}
+    </Box>
+  );
+};
+
+export default Search;

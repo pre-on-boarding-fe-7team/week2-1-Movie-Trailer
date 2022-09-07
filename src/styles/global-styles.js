@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 // reset css
 export const GlobalStyle = createGlobalStyle`
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
 html,
 body,
 div,
@@ -105,6 +107,7 @@ section {
   display: block;
 }
 body {
+  font-family: 나눔스퀘어, 'NanumSquare', sans-serif;
   line-height: 1;
 }
 ol,
@@ -125,5 +128,9 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+body {
+  color: white;
+  background-color: ${props => props.theme.colors.black};
 }
 `;
