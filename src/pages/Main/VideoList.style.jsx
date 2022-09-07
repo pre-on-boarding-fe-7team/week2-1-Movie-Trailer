@@ -14,3 +14,28 @@ export const ListWrraper = styled.div`
     margin-left: 10px;
   }
 `;
+export const VideoItemWrraper = styled.div`
+  margin: 0 auto;
+  padding: 0px 40px 40px 40px;
+  width: 1100px;
+
+  img {
+    border: 1px solid transparent;
+    border-radius: 15px;
+    width: 200px;
+    height: 200px;
+  }
+`;
+
+export const Img = styled.div`
+  margin: 0 auto;
+  padding: 0px 40px 40px 40px;
+  width: 1100px;
+
+  img {
+    border: 1px solid transparent;
+    border-radius: 15px;
+    width: 200px;
+    height: 200px;
+  }
+`;

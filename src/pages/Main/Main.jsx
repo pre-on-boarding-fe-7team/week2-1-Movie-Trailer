@@ -1,28 +1,24 @@
-// import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from './Main.style';
-import VieodList from './videoList';
+
+import { useQuery } from 'react-query';
+import { getMoviePopular } from '../../api/api';
+import Slider from './Slider/Slider';
+
 function Main() {
-  const API_URL = 'https://api.themoviedb.org/3';
-  // const apikey = process.env.REACT_APP_API_KEY;
-  const [videos, setVideos] = useState([]);
+  const { data: GetMoviePopular, status } = useQuery('GetMoviePopular', () => getMoviePopular());
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
-    fetch(`${API_URL}/movie/popular?api_key=f57efe3dc1a886a3611eff7cabe98a90`, requestOptions)
-      .then(response => response.json())
-      .then(result => setVideos(result.results))
-      .catch(error => console.info('error', error));
-  }, []);
+  if (status === 'loading') {
+    return <>loading...</>;
+  }
 
-  console.info(videos);
+  if (status === 'error') {
+    return alert('error');
+  }
 
   return (
     <Container>
-      <VieodList videos={videos} />
+      <Slider GetMoviePopular={GetMoviePopular} />
     </Container>
   );
 }

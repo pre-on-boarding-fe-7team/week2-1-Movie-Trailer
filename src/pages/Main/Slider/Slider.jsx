@@ -1,24 +1,37 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-import { SliderWrapper, SlideItem, Thumnail } from './Slider.style';
+import nextIcon from '../assets/dd.png';
+import {
+  SliderWrapper,
+  SlideItem,
+  Thumnail,
+  Div,
+  DivPre,
+  StyledSlider,
+} from '../Slider/Slider.style';
 
-function Sliders({ videos }) {
+function Sliders({ GetMoviePopular }) {
   const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
   const settings = {
     infinite: true,
-    slidesToShow: 5.5,
+    slidesToShow: 4.5,
     speed: 800,
     slidesToScroll: 4,
+    rows: 2,
+    nextArrow: (
+      <Div>
+        <img src={nextIcon} />
+      </Div>
+    ),
+    prevArrow: (
+      <DivPre>
+        <img src={nextIcon} />
+      </DivPre>
+    ),
   };
-  useEffect(() => {});
-  // const calculateRateStar = () => {
-  //   const width = 24 * rate; //rate는 number형 별점. ex) 4.2 2.8 등
-  //   setCalRate(`${width}px`);
-  // };
 
-  const videoItems = videos.map(movie => {
+  const videoItems = GetMoviePopular.map(movie => {
     return (
       <div key={movie.id}>
         <SlideItem>
@@ -27,7 +40,7 @@ function Sliders({ videos }) {
           </Thumnail>
           <div className="postTitle">
             <p>{movie.title}</p>
-            <p>{movie.vote_average}</p>
+            <p>평점 : {movie.vote_average}</p>
           </div>
         </SlideItem>
       </div>
@@ -46,26 +59,10 @@ function Sliders({ videos }) {
         type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
       />
-      <style>{cssstyle}</style>
-      <Slider {...settings}>{videoItems}</Slider>
+
+      <StyledSlider {...settings}>{videoItems}</StyledSlider>
     </SliderWrapper>
   );
 }
 
 export default Sliders;
-
-const cssstyle = `
-
-.slick-next:before, .slick-prev:before {
-    color: #000;
-}
-.center .slick-center h3 {
-    color: #e67e22;
-    opacity: 1;
-    -ms-transform: scale(1.08);
-    transform: scale(1.08);
-}
-.center h3 {
-    transition: all .3s ease;
-}
-`;
