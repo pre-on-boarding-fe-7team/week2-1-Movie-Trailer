@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const Box = styled(MuiBox)`
   height: 100%;
-  padding: 40px 20px;
 `;
 
 export const Title = styled(Typography)`
