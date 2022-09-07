@@ -6,25 +6,24 @@ import TopRated from './TopRated';
 import { Ul } from './TopRatedList.style.js';
 
 export default function TopRatedList() {
-  const { isLoading: detailLoading, data: TopRatedList } = useQuery('TopRatedList', () =>
-    getMovieTopRated()
-  );
+  const { data: TopRatedList, status } = useQuery('TopRatedList', () => getMovieTopRated());
 
-  if (detailLoading === true) {
+  if (status === 'loading') {
     return (
-      <Backdrop
-        sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-        open={detailLoading}
-      >
+      <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
         <CircularProgress color="inherit" />
       </Backdrop>
     );
   }
 
+  if (status === 'error') {
+    return alert('error');
+  }
+
   return (
     <>
       <Ul>
-        {TopRatedList.map(movie => {
+        {TopRatedList?.map(movie => {
           return (
             <TopRated
               key={movie.id}

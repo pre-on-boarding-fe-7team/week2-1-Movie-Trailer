@@ -1,11 +1,21 @@
 import React from 'react';
-import useInfiniteScroll from '../../common/hooks/useInfiniteScroll';
+import useInfiniteScroll from '../../common/hooks/useInfiniteScroll'
 import { Container } from './Upcoming.style';
 
 function UpComing() {
   const [data] = useInfiniteScroll(
-    `/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=`
-  );
+    `/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko&page=`)
+  
+  const { data: UpcomingMovies, status } = useQuery('UpcomingMovies', () => getUpcomingMovies());
+
+  if (status === 'loading') {
+    return <>loading...</>;
+  }
+
+  if (status === 'error') {
+    return alert('error');
+  }
+
   return (
     <Container>
       {data?.pages.map(page =>
@@ -20,8 +30,7 @@ function UpComing() {
           </div>
         ))
       )}
-    </Container>
-  );
+    </Container>   
 }
 
 export default UpComing;

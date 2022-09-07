@@ -31,9 +31,10 @@ const margins = {
 const colors = {
   black: '#101010',
   grey: '#999',
-  green: '#3cb46e',
-  blue: '#000080',
   white: '#fff',
+  purple: '#31087B',
+  pink: '#FA2FB5',
+  yellow: '#FFC23C',
 };
 
 const common = {
