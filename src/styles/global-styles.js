@@ -129,4 +129,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+body {
+  color: white;
+  background-color: ${props => props.theme.colors.black};
+}
 `;

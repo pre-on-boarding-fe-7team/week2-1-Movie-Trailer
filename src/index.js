@@ -22,16 +22,16 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <GlobalStyle />
-      <BrowserRouter>
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <BrowserRouter>
             <QueryClientProvider client={queryClient}>
               <App />
             </QueryClientProvider>
-          </ThemeProvider>
-        </StyledEngineProvider>
-      </BrowserRouter>
+          </BrowserRouter>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

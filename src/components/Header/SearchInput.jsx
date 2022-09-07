@@ -3,16 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { Icon, Search, SearchIconWrapper, StyledInputBase } from './SearchInput.style';
 
 const SearchInput = () => {
-  const [keyword, setKeyword] = useState('');
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const changeHandler = e => {
-    setKeyword(e.target.value);
+    setQuery(e.target.value);
   };
-  const searchHandler = e => {
-    if (e.key === 'Enter') {
-      setKeyword('');
-      navigate('/search', { state: { query: e.target.value } });
-    }
+  const searchHandler = ({ target: { value }, key }) => {
+    if (key !== 'Enter') return;
+    if (!value) return;
+
+    setQuery('');
+    navigate('/search', { state: { query: value } });
   };
   return (
     <Search>
@@ -24,7 +25,7 @@ const SearchInput = () => {
         inputProps={{ 'aria-label': 'search' }}
         onKeyDown={searchHandler}
         onChange={changeHandler}
-        value={keyword}
+        value={query}
       />
     </Search>
   );
