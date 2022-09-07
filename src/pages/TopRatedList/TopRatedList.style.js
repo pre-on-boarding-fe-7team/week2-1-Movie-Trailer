@@ -1,7 +1,7 @@
+import { Box as MuiBox } from '@mui/material';
 import styled from 'styled-components';
 
-export const Ul = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-gap: ${({ theme }) => theme.paddings.xl};
+export const Container = styled(MuiBox)`
+  background: ${props => props.theme.colors.black};
+  padding: 40px 20px;
 `;
