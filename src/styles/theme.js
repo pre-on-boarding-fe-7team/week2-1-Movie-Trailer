@@ -1,6 +1,7 @@
 const pixelToRem = size => `${size / 16}rem`;
 
 const fontSizes = {
+  xsmall: pixelToRem(12),
   small: pixelToRem(14),
   base: pixelToRem(16),
   lg: pixelToRem(18),
@@ -40,19 +41,19 @@ const colors = {
 const common = {
   flexCenter: `
     display: flex;
-    justify-contents: center;
+    justify-content: center;
     align-items: center;
   `,
   flexCenterColumn: `
     display: flex;
     flex-direction: column;
-    justify-contents: center;
+    justify-content: center;
     align-items: center;
   `,
   flexCenterSpaceBetween: `
     display: flex;
     align-items: center;
-    justify-contents: space-between;
+    justify-content: space-between;
   `,
 };
 
