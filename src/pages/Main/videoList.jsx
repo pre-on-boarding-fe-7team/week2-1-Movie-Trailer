@@ -1,18 +1,17 @@
 import React from 'react';
-const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
-
+import Slider from './Slider';
+import VideoItems from './VideoItems';
+import { ListWrraper } from './VideoList.style';
 function VieodList({ videos }) {
   return (
-    <div>
-      <ul>
-        {videos.map(video => (
-          <li key={video.id}>
-            <div>{video.title}</div>
-            <img src={IMAGE_BASE_URL + `${video.backdrop_path}`}></img>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ListWrraper>
+      <span className="title">POPULAR IN THEATERS</span>
+      <span className="allItems">전체보기></span>
+      <Slider videos={videos} />
+      {videos.map(video => (
+        <VideoItems key={video.id} video={video} />
+      ))}
+    </ListWrraper>
   );
 }
 

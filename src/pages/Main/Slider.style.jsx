@@ -22,9 +22,9 @@ export const SlideItem = styled.div`
   .postTitle {
     height: 55px;
     width: 90%;
-    margin: 0 15px;
+    margin: 0 40px;
   }
 `;
 export const Thumnail = styled.div`
-  /* margin: 20px; */
+  margin: 20px;
 `;
