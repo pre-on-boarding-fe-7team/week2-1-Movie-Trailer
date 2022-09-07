@@ -2,19 +2,23 @@ import * as React from 'react';
 import SearchInput from './SearchInput';
 import { AppBar } from './Header.style';
 import HamburgerMenu from './HamburgerMenu';
-import { Box, Button, Toolbar } from '@mui/material';
+import { Box, Toolbar } from '@mui/material';
 import Logo from './Logo';
 import { ROUTE } from '../../common/utils/constant';
-import Link from './Link.style.js';
+import { Link, useLocation } from 'react-router-dom';
 
 const pages = [
   { title: 'main', path: ROUTE.MAIN },
-  { title: 'up_coming', path: ROUTE.UP_COMING },
-  { title: 'nowplaying', path: ROUTE.NOWPLAYING },
+  { title: 'upcoming', path: ROUTE.UP_COMING },
+  { title: 'now_playing', path: ROUTE.NOWPLAYING },
   { title: 'top_rated', path: ROUTE.TOP_RATED },
 ];
 
 const Header = () => {
+  const pathName = useLocation().pathname;
+  const pathRoute = pathName.split('/')[2];
+  console.info(pathRoute);
+
   return (
     <>
       <Box>
@@ -26,9 +30,13 @@ const Header = () => {
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map(({ title, path }) => (
-                <Button key={title} sx={{ color: 'white', display: 'block' }}>
-                  <Link to={path}>{title}</Link>
-                </Button>
+                <Link
+                  key={title}
+                  to={path}
+                  className={`${pathRoute === `${title}` ? 'active' : ''}`}
+                >
+                  {title}
+                </Link>
               ))}
             </Box>
 
