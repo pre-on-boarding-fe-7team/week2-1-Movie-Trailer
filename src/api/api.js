@@ -16,7 +16,7 @@ const getMovieVideo = async id => {
 };
 
 const getMovieTopRated = async () => {
-  const response = await api.get(`/top_rated`);
+  const response = await api.get(`/movie/top_rated`);
   return response.data.results;
 };
 
