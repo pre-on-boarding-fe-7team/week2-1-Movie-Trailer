@@ -7,6 +7,7 @@ import UpComing from './pages/Upcoming/Upcoming';
 import Search from './pages/Search/Search';
 import TopRatedList from './pages/TopRatedList/TopRatedList';
 import NotFound from './pages/NotFound/NotFound';
+import NowPlaying from './pages/NowPlaying/NowPlaying';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path={ROUTE.MAIN} element={<Main />} />
+        <Route path={ROUTE.NOWPLAYING} element={<NowPlaying />} />
         <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
         <Route path={ROUTE.UP_COMING} element={<UpComing />} />
         <Route path={ROUTE.SEARCH} element={<Search />} />

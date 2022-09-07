@@ -13,13 +13,13 @@ const MovieDetail = () => {
   //   { queryKey: 'movieVideo', queryFn: getMovieVideo },
   // ]);
 
-  const { isLoading: detailLoading, data: movieDetail } = useQuery('movieDetail', () =>
-    getMovieDetail(id)
+  const { data: movieDetail, isLoading: detailLoading } = useQuery('movieDetail', () =>
+    getMovieDetail({ id })
   );
-  const { isLoading: videoLoading, data: movieVideo } = useQuery('movieVideo', () =>
-    getMovieVideo(id)
+  const { data: movieVideo, isLoading: videoLoading } = useQuery('movieVideo', () =>
+    getMovieVideo({ id })
   );
-
+  console.info(movieDetail);
   if ((detailLoading || videoLoading) === true) {
     return (
       <div style={{ backgroundColor: 'black', width: '100vw', height: '100vh', color: 'white' }}>
@@ -33,16 +33,16 @@ const MovieDetail = () => {
     <Section>
       <div>
         <Background
-          src={`${process.env.REACT_APP_IMG_URL}/original/${movieDetail.backdrop_path}`}
+          src={`${process.env.REACT_APP_IMAGE_URL}/original/${movieDetail?.backdrop_path}`}
           alt="back_img"
         />
         <InfoDiv>
-          <div>제목 : {movieDetail.original_title}</div>
-          <div>별점 : {movieDetail.vote_average} / 10</div>
-          <div>제작연도 : {movieDetail.release_date.split('-')[0]}</div>
+          <div>제목 : {movieDetail?.original_title}</div>
+          <div>별점 : {movieDetail?.vote_average} / 10</div>
+          <div>제작연도 : {movieDetail?.release_date.split('-')[0]}</div>
           <div>
             장르 :
-            {movieDetail.genres.map(i => (
+            {movieDetail?.genres.map(i => (
               <span key={i.name}> {i.name}</span>
             ))}
           </div>
@@ -52,7 +52,7 @@ const MovieDetail = () => {
       <div>
         {movieVideo && (
           <Video
-            title={movieDetail.original_title}
+            title={movieDetail?.original_title}
             id="ytplayer"
             type="text/html"
             width="720"
@@ -64,12 +64,12 @@ const MovieDetail = () => {
         )}
 
         <div style={{ color: 'white', marginLeft: '20rem', marginTop: '2rem' }}>
-          {movieDetail.overview}
+          {movieDetail?.overview}
         </div>
       </div>
 
       <Poster
-        src={`${process.env.REACT_APP_IMG_URL}/original/${movieDetail.poster_path}`}
+        src={`${process.env.REACT_APP_IMAGE_URL}/original/${movieDetail?.poster_path}`}
         alt="poster_img"
       />
     </Section>
