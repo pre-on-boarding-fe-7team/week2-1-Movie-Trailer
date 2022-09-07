@@ -9,7 +9,7 @@ export default function useFetchData(endpoint) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = baseUrl + endpoint + '?api_key=' + apiKey + '&language=en-US';
+      const url = baseUrl + endpoint + '?api_key=' + apiKey + '&language=ko';
       try {
         const { data: response } = await axios.get(`${url}`);
         setData(response);
