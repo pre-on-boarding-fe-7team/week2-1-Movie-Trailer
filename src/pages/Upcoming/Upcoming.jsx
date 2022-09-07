@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { get } from '../../api/api';
 import { Container } from './Upcoming.style';
@@ -25,12 +25,10 @@ function UpComing() {
   return (
     <Container>
       {upcomingMovieList?.map((movie, idx) => (
-        <Fragment key={idx}>
-          <div>
+          <div key={idx}>
             <div>{movie.title}</div>
             <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title} />
           </div>
-        </Fragment>
       ))}
     </Container>
   );
