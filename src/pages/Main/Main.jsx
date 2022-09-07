@@ -18,6 +18,7 @@ function Main() {
 
   return (
     <Container>
+      <div>Popular In Theaters</div>
       <Slider GetMoviePopular={GetMoviePopular} />
     </Container>
   );

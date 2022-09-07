@@ -1,7 +1,8 @@
 import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import nextIcon from '../assets/dd.png';
+import nextIcon from '../assets/next.png';
+import prevIcon from '../assets/prev.png';
 import {
   SliderWrapper,
   SlideItem,
@@ -14,10 +15,12 @@ import {
 function Sliders({ GetMoviePopular }) {
   const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
   const settings = {
-    infinite: true,
-    slidesToShow: 4.5,
-    speed: 800,
-    slidesToScroll: 4,
+    // infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    speed: 600,
+    autoplay: true,
+    autoplaySpeed: 4000,
     rows: 2,
     nextArrow: (
       <Div>
@@ -26,7 +29,7 @@ function Sliders({ GetMoviePopular }) {
     ),
     prevArrow: (
       <DivPre>
-        <img src={nextIcon} />
+        <img src={prevIcon} />
       </DivPre>
     ),
   };
