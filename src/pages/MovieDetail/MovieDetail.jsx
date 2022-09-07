@@ -14,10 +14,10 @@ const MovieDetail = () => {
   // ]);
 
   const { data: movieDetail, isLoading: detailLoading } = useQuery('movieDetail', () =>
-    getMovieDetail({ id })
+    getMovieDetail(id)
   );
   const { data: movieVideo, isLoading: videoLoading } = useQuery('movieVideo', () =>
-    getMovieVideo({ id })
+    getMovieVideo(id)
   );
   console.info(movieDetail);
   if ((detailLoading || videoLoading) === true) {
