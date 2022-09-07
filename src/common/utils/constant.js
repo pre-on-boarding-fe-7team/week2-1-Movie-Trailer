@@ -3,6 +3,7 @@ export const ROUTE = {
   UP_COMING: '/up-coming',
   NOWPLAYING: '/nowplaying',
   NOT_FOUND: '*',
+  MOVIE: '/movie',
   MOVIE_ID: '/movie/:id',
   SEARCH: '/search',
   TOP_RATED: '/movie/top_rated',

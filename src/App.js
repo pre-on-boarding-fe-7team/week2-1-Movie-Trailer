@@ -8,6 +8,7 @@ import Search from './pages/Search/Search';
 import TopRatedList from './pages/TopRatedList/TopRatedList';
 import NotFound from './pages/NotFound/NotFound';
 import NowPlaying from './pages/NowPlaying/NowPlaying';
+import ScrollTop from './components/ScrollTop/ScrollTop';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path={ROUTE.TOP_RATED} element={<TopRatedList />} />
         <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
       </Routes>
+      <ScrollTop />
     </>
   );
 }
