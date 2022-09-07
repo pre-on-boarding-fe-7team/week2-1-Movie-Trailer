@@ -1,5 +1,4 @@
-import { ImageListItem, ImageListItemBar } from '@mui/material';
-import { Container } from '@mui/system';
+import { Box, ImageListItem, ImageListItemBar } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -22,7 +21,7 @@ const Search = () => {
   }, [query]);
 
   return (
-    <Container>
+    <Box>
       {movies.length > 0 ? (
         <>
           <p>"{query}"에 대한 검색 결과</p>
@@ -42,7 +41,7 @@ const Search = () => {
       ) : (
         <p>입력하신 "{query}"에 대한 검색 결과가 없습니다.</p>
       )}
-    </Container>
+    </Box>
   );
 };
 

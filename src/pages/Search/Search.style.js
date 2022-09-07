@@ -1,7 +1,7 @@
-import { ImageList, Container as MuiContainer } from '@mui/material';
+import { ImageList, Box as MuiBox } from '@mui/material';
 import styled from 'styled-components';
 
-export const Container = styled(MuiContainer)`
+export const Box = styled(MuiBox)`
   height: 100%;
 `;
 
