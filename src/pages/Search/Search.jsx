@@ -1,32 +1,34 @@
-import { Box, ImageListItem, ImageListItemBar } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { ImageListItem, ImageListItemBar } from '@mui/material';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
-import { get } from '../../api/api.js';
-import { MovieImageList } from './Search.style.js';
+import { getSearchMovie } from '../../api/api.js';
+import { Bold, Box, MovieImageList, Title } from './Search.style.js';
 import Star from './Star/Star.jsx';
 
 const Search = () => {
-  const [movies, setMovies] = useState([]);
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const location = useLocation();
+  const query = location.state.query;
 
-  useEffect(() => {
-    const searchMovies = async () => {
-      const url = `/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=ko&query=${query}`;
-      const res = await get(url);
-      setMovies(res.results);
-    };
-    searchMovies();
-  }, [query]);
+  const { data: searchMovie, status } = useQuery('searchMovie', () => getSearchMovie(query));
+
+  if (status === 'loading') {
+    return <>loading...</>;
+  }
+
+  if (status === 'error') {
+    return alert('error');
+  }
 
   return (
     <Box>
-      {movies.length > 0 ? (
+      {searchMovie?.length > 0 ? (
         <>
-          <p>"{query}"에 대한 검색 결과</p>
-          <MovieImageList cols={4} gap={8}>
-            {movies.map(({ id, title, vote_average, poster_path }) => (
+          <Title variant="h6">
+            "<Bold>{query}</Bold>"에 대한 검색 결과
+          </Title>
+          <MovieImageList cols={5} gap={8}>
+            {searchMovie?.map(({ id, title, vote_average, poster_path }) => (
               <ImageListItem key={id}>
                 <img
                   src={`${process.env.REACT_APP_IMAGE_URL}${poster_path}`}

@@ -29,7 +29,9 @@ const margins = {
 };
 
 const colors = {
-  black: '#100720',
+  black: '#101010',
+  grey: '#999',
+  white: '#fff',
   purple: '#31087B',
   pink: '#FA2FB5',
   yellow: '#FFC23C',

@@ -1,30 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
-import { get } from '../../api/api';
+import { getUpcomingMovies } from '../../api/api';
 import { Container } from './Upcoming.style';
 
 function UpComing() {
-  const [upcomingMovieList, setUpcomingMovieList] = useState([]);
+  const { data: UpcomingMovies, status } = useQuery('UpcomingMovies', () => getUpcomingMovies());
 
-  const getUpcomingMovieList = async () => {
-    return await get(`/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=ko`);
-  };
+  if (status === 'loading') {
+    return <>loading...</>;
+  }
 
-  useQuery('getUpcomingMovieList', getUpcomingMovieList, {
-    onSuccess: data => {
-      setUpcomingMovieList(data.results);
-    },
-    onError: err => {
-      console.error(err);
-    },
-    isLoading: () => {
-      return <div>isLoading...</div>;
-    },
-  });
+  if (status === 'error') {
+    return alert('error');
+  }
 
   return (
     <Container>
-      {upcomingMovieList?.map((movie, idx) => (
+      {UpcomingMovies?.map((movie, idx) => (
         <div key={idx}>
           <div>{movie.title}</div>
           <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title} />
