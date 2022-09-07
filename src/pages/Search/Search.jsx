@@ -1,15 +1,15 @@
-import { Box, ImageListItem, ImageListItemBar } from '@mui/material';
+import { ImageListItem, ImageListItemBar } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { get } from '../../api/api.js';
-import { MovieImageList } from './Search.style.js';
+import { Bold, Box, MovieImageList, Title } from './Search.style.js';
 import Star from './Star/Star.jsx';
 
 const Search = () => {
   const [movies, setMovies] = useState([]);
-  const [searchParams] = useSearchParams();
-  const query = searchParams.get('query');
+  const location = useLocation();
+  const query = location.state.query;
 
   useEffect(() => {
     const searchMovies = async () => {
@@ -24,8 +24,10 @@ const Search = () => {
     <Box>
       {movies.length > 0 ? (
         <>
-          <p>"{query}"에 대한 검색 결과</p>
-          <MovieImageList cols={4} gap={8}>
+          <Title variant="h6">
+            "<Bold>{query}</Bold>"에 대한 검색 결과
+          </Title>
+          <MovieImageList cols={5} gap={8}>
             {movies.map(({ id, title, vote_average, poster_path }) => (
               <ImageListItem key={id}>
                 <img
