@@ -1,5 +1,5 @@
 import { ImageListItemBar } from '@mui/material';
-import { getImage } from '../../../common/utils/image';
+import { getImage } from '../../common/utils/image';
 import Star from '../Star/Star';
 import { MovieImage, MovieImageListItem } from './MovieItem.style';
 
