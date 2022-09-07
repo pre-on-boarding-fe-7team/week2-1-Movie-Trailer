@@ -8,11 +8,6 @@ import { getMovieDetail, getMovieVideo } from '../../api/api';
 const MovieDetail = () => {
   const { id } = useParams();
 
-  // const results = useQueries([
-  //   { queryKey: 'movieDetail', queryFn: getMovieDetail },
-  //   { queryKey: 'movieVideo', queryFn: getMovieVideo },
-  // ]);
-
   const { isLoading: detailLoading, data: movieDetail } = useQuery('movieDetail', () =>
     getMovieDetail(id)
   );

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  margin-top: 90px; //header자리
   display: flex;
   flex-direction: column;
   background-color: black;
