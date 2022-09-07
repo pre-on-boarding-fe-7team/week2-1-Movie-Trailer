@@ -7,12 +7,12 @@ import UpComing from './pages/Upcoming/Upcoming';
 
 function App() {
   return (
-      <Routes>
-        <Route path={ROUTE.MAIN} element={<Main />} />
-        <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
-        <Route path={ROUTE.UP_COMING} element={<UpComing />} />
-        <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
-      </Routes>
+    <Routes>
+      <Route path={ROUTE.MAIN} element={<Main />} />
+      <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
+      <Route path={ROUTE.UP_COMING} element={<UpComing />} />
+      <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
+    </Routes>
   );
 }
 
