@@ -27,7 +27,7 @@ const getMovieNowPlaying = async () => {
 
 const getSearchMovie = async query => {
   const response = await api.get(`/search/movie`, { params: { query: query } });
-  return response.results;
+  return response.data.results;
 };
 
 const getUpcomingMovies = async () => {
