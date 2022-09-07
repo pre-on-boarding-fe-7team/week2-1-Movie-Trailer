@@ -1,14 +1,22 @@
-const baseUrl = process.env.REACT_APP_SERVER_URL;
+import axios from 'axios';
 
-const get = async endpoint => {
-  const url = baseUrl + endpoint;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`${res.status.toString()} Error 인한 요청 실패!`);
-  }
-  const result = await res.json();
+const httpClient = axios.create({
+  baseURL: `${process.env.REACT_APP_BASE_URL}/movie`,
+  params: { api_key: process.env.REACT_APP_API_KEY },
+});
 
-  return result;
+const getMovieDetail = async id => {
+  const response = await httpClient.get(`${id}`, {
+    params: {
+      language: 'en-US',
+    },
+  });
+  return response.data;
 };
 
-export { get };
+const getMovieVideo = async id => {
+  const response = await httpClient.get(`${id}/videos`);
+  return response.data.results[0].key;
+};
+
+export { getMovieDetail, getMovieVideo };
