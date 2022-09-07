@@ -2,17 +2,22 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
-  params: { api_key: process.env.REACT_APP_API_KEY, language: 'ko' },
+  params: { api_key: process.env.REACT_APP_API_KEY, language: 'ko' }
+
 });
 
 const getMovieDetail = async id => {
-  const response = await api.get(`/movie/${id}`);
+  const response = await api.get(`/movie/${id}`, {
+    params: {
+      language: 'en-US',
+    },
+  });
   return response.data;
 };
 
 const getMovieVideo = async id => {
   const response = await api.get(`/movie/${id}/videos`);
-  return response.data.results[0].key;
+  return response.data.results;
 };
 
 const getMovieTopRated = async () => {
@@ -30,9 +35,9 @@ const getSearchMovie = async query => {
   return response.data.results;
 };
 
-const getUpcomingMovies = async () => {
-  const response = await api.get(`/movie/upcoming`);
-  return response.data.results;
+const getUpcomingMovies = async query => { 
+  const response = await api.get(`/movie/upcoming`, { params: { page: query } });
+  return response.data;
 };
 const getMoviePopular = async () => {
   const response = await api.get(`/movie/popular`);

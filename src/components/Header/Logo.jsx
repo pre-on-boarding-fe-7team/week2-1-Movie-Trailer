@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { ROUTE } from '../../common/utils/constant';
+import Link from './Link.style';
 import { LogoTitle } from './Logo.style';
 
 const Logo = ({ children }) => {
