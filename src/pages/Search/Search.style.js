@@ -7,6 +7,7 @@ export const Box = styled(MuiBox)`
 
 export const Title = styled(Typography)`
   margin-bottom: 10px;
+  padding: 20px;
 `;
 
 export const Bold = styled.b`
