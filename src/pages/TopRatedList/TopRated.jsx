@@ -1,12 +1,15 @@
-import { Li, Img } from './TopRated.style.js';
+import { Li, ImgDiv, Img, Title, AverageSpan, DateSpan } from './TopRated.style.js';
 
-export default function TopRated({ title, posterImg, average }) {
+export default function TopRated({ title, posterImg, average, date }) {
   const src = `${process.env.REACT_APP_IMAGE_URL}` + posterImg;
   return (
     <Li>
-      <Img src={src} alt={`${title} img`} />
-      <span>{title}</span>
-      <span>{average}</span>
+      <ImgDiv>
+        <Img src={src} alt={`${title} img`} />
+      </ImgDiv>
+      <Title>{title}</Title>
+      <AverageSpan>평점 {average} / 10</AverageSpan>
+      <DateSpan>개봉 {date}</DateSpan>
     </Li>
   );
 }

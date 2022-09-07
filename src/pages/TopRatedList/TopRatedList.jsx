@@ -3,7 +3,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getMovieTopRated } from '../../api/api';
 import TopRated from './TopRated';
-import { Ul } from './TopRatedList.style.js';
+import { Container, Ul } from './TopRatedList.style.js';
 
 export default function TopRatedList() {
   const { data: TopRatedList, status } = useQuery('TopRatedList', () => getMovieTopRated());
@@ -21,7 +21,7 @@ export default function TopRatedList() {
   }
 
   return (
-    <>
+    <Container>
       <Ul>
         {TopRatedList?.map(movie => {
           return (
@@ -30,10 +30,11 @@ export default function TopRatedList() {
               title={movie.title}
               posterImg={movie.poster_path}
               average={movie.vote_average}
+              date={movie.release_date}
             />
           );
         })}
       </Ul>
-    </>
+    </Container>
   );
 }
