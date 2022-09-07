@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { apis } from '../../api/api';
+import { getMovieNowPlaying } from '../../api/api';
 import { Tabs, Tab, Box } from '@mui/material';
 import { Container, Img, MovieList } from './NowPlaying.style';
 
@@ -10,19 +10,15 @@ const NowPlaying = () => {
     setCategory(value);
   };
 
-  // 리액트 쿼리
-  const GetMoviesData = async () => {
-    const response = await apis.getMovies();
-    return response.data;
-  };
-
-  const { data: Movies_data, status } = useQuery(['Movies_data'], GetMoviesData, {
-    // refetchOnWindowFocus: false,
-    // retry: 0,
-    onSuccess: Movies_data => {
-      console.info(Movies_data);
-    },
-  });
+  const { data: Movies_data, status } = useQuery(
+    'nowPlayingMovieList',
+    () => getMovieNowPlaying(),
+    {
+      onSuccess: Movies_data => {
+        console.info(Movies_data);
+      },
+    }
+  );
 
   if (status === 'loading') {
     return <>loading...</>;
