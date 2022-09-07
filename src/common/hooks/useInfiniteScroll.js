@@ -31,7 +31,7 @@ const useInfiniteScroll = () => {
     return () => {
       document.removeEventListener('scroll', onScroll);
     };
-  }, [hasNextPage]);
+  }, [hasNextPage, fetchNextPage]);
 
   return [data, status];
 };
