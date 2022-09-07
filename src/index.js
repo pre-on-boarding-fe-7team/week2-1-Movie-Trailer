@@ -5,10 +5,12 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import App from './App';
 import { StyledEngineProvider } from '@mui/styled-engine';
+import { GlobalStyle } from './styles/global-styles';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
