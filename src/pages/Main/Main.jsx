@@ -4,7 +4,6 @@ import { Container } from './Main.style';
 import VieodList from './videoList';
 function Main() {
   const API_URL = 'https://api.themoviedb.org/3';
-  // const apikey = process.env.REACT_APP_API_KEY;
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
