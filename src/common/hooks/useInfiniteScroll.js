@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { getUpcomingMovies } from '../../api/api';
 
-const useInfiniteScroll = () => {
+const useInfiniteScroll = api => {
   const { data, hasNextPage, fetchNextPage, status } = useInfiniteQuery(
-    'getUpcomingMovieList',
-    ({ pageParam = 1 }) => getUpcomingMovies(pageParam),
+    `${api}`,
+    ({ pageParam = 1 }) => api(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
         const maxPages = Math.ceil(lastPage.total_results / 20);
@@ -31,7 +30,7 @@ const useInfiniteScroll = () => {
     return () => {
       document.removeEventListener('scroll', onScroll);
     };
-  }, [hasNextPage]);
+  }, [fetchNextPage, hasNextPage]);
 
   return [data, status];
 };
