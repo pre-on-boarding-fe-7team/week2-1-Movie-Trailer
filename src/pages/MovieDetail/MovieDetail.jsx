@@ -30,21 +30,23 @@ const MovieDetail = () => {
   //   { queryKey: 'movieVideo', queryFn: getMovieVideo },
   // ]);
 
-  const { status, data: movieDetail, error } = useQuery('movieDetail', getMovieDetail);
-  const movieVideo = useQuery('movieVideo', getMovieVideo);
+  const { isLoading: detailLoading, data: movieDetail } = useQuery('movieDetail', getMovieDetail);
+  const { isLoading: videoLoading, data: movieVideo } = useQuery('movieVideo', getMovieVideo);
 
-  if (status === 'loading') {
+  if ((detailLoading || videoLoading) === true) {
     return <span>Loading...</span>;
-  }
-  if (status === 'error') {
-    return <span>Error: {error.message}</span>;
   }
 
   return (
     <>
+      <button>test</button>
       <img
         src={`${process.env.REACT_APP_IMG_URL}/w500/${movieDetail.poster_path}`}
         alt="poster_img"
+      />
+      <img
+        src={`${process.env.REACT_APP_IMG_URL}/w500/${movieDetail.backdrop_path}`}
+        alt="back_img"
       />
       <div>제목 : {movieDetail.original_title}</div>
       <div>별점 : {movieDetail.vote_average}</div>
@@ -55,14 +57,14 @@ const MovieDetail = () => {
           <span key={i.name}> {i.name}</span>
         ))}
       </div>
-      {movieVideo.data && (
+      {movieVideo && (
         <iframe
           title={movieDetail.original_title}
           id="ytplayer"
           type="text/html"
           width="720"
           height="405"
-          src={`https://www.youtube.com/embed/${movieVideo.data}?autoplay=1&mute=1`}
+          src={`https://www.youtube.com/embed/${movieVideo}?autoplay=1&mute=1`}
           frameBorder="0"
           allowFullScreen
         ></iframe>
