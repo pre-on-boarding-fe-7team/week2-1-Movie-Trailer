@@ -4,6 +4,7 @@ import Main from './pages/Main/Main';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import NotFound from './pages/NotFound/NotFound';
 import Search from './pages/Search/Search';
+import TopRatedList from './pages/TopRatedList/TopRatedList';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
       <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
       <Route path={ROUTE.SEARCH} element={<Search />} />
+      <Route path={ROUTE.TOP_RATED} element={<TopRatedList />} />
     </Routes>
   );
 }
