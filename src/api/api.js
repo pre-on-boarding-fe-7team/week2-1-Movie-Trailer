@@ -34,7 +34,6 @@ const getMovieVideo = async id => {
   return response.data.results[0].key;
 };
 
-
 const getMovieTopRated = async id => {
   const response = await httpClient.get(`/top_rated`);
   return response.data.results;
