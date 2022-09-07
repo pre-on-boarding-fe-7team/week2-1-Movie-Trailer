@@ -1,19 +1,16 @@
 import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import { get } from '../../api/api';
+import { getUpcomingMovies } from '../../api/api';
 
-const useInfiniteScroll = url => {
-  const getUpcomingMovieList = async (page = 1) => {
-    return await get(`${url}${page}`);
-  };
-
-  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery(
+const useInfiniteScroll = () => {
+  const { data, hasNextPage, fetchNextPage, status } = useInfiniteQuery(
     'getUpcomingMovieList',
-    ({ pageParam = 1 }) => getUpcomingMovieList(pageParam),
+    ({ pageParam = 1 }) => getUpcomingMovies(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
         const maxPages = Math.ceil(lastPage.total_results / 20);
         const nextPage = allPages.length + 1;
+
         return nextPage <= maxPages ? nextPage : undefined;
       },
     }
@@ -36,7 +33,7 @@ const useInfiniteScroll = url => {
     };
   }, [hasNextPage]);
 
-  return [data];
+  return [data, status];
 };
 
 export default useInfiniteScroll;
