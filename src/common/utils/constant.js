@@ -5,6 +5,6 @@ export const ROUTE = {
   NOT_FOUND: '*',
   MOVIE: '/movie',
   MOVIE_ID: '/movie/:id',
-  SEARCH: '/search/movie',
+  SEARCH: '/search',
   TOP_RATED: '/movie/top_rated',
 };

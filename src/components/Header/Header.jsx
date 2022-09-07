@@ -17,7 +17,6 @@ const pages = [
 const Header = () => {
   const pathName = useLocation().pathname;
   const pathRoute = pathName.split('/')[2];
-  console.info(pathRoute);
 
   return (
     <>
