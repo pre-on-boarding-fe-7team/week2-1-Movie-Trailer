@@ -15,9 +15,9 @@ const getMovieVideo = async id => {
   return response.data.results;
 };
 
-const getMovieTopRated = async () => {
-  const response = await api.get(`/movie/top_rated`);
-  return response.data.results;
+const getMovieTopRated = async query => {
+  const response = await api.get(`/movie/top_rated`, { params: { page: query } });
+  return response.data;
 };
 
 const getMovieNowPlaying = async () => {
@@ -30,9 +30,9 @@ const getSearchMovie = async query => {
   return response.data.results;
 };
 
-const getUpcomingMovies = async () => {
-  const response = await api.get(`/movie/upcoming`);
-  return response.data.results;
+const getUpcomingMovies = async query => {
+  const response = await api.get(`/movie/upcoming`, { params: { page: query } });
+  return response.data;
 };
 
 export {

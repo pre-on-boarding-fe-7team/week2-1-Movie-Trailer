@@ -1,53 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
 import { getMovieNowPlaying } from '../../api/api';
-import { Tabs, Tab, Box } from '@mui/material';
-import { Container, Img, MovieList } from './NowPlaying.style';
+import { Container } from './NowPlaying.style.js';
+import MovieList from '../../components/MovieList/MovieList.jsx';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const NowPlaying = () => {
-  const [category, setCategory] = useState('');
-  const handleChange = (e, value) => {
-    setCategory(value);
-  };
-
-  const { data: Movies_data, status } = useQuery(
-    'nowPlayingMovieList',
-    () => getMovieNowPlaying(),
-    {
-      onSuccess: Movies_data => {
-        console.info(Movies_data);
-      },
-    }
-  );
+  const { data: Movies_data, status } = useQuery('nowPlayingMovieList', () => getMovieNowPlaying());
 
   if (status === 'loading') {
-    return <>loading...</>;
+    return (
+      <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
   }
 
   if (status === 'error') {
     return alert('error');
   }
 
-  return (
-    <Container>
-      <Box sx={{ borderBottom: 2, borderColor: 'divider' }}>
-        <Tabs value={category} onChange={handleChange} centered>
-          <Tab value="별점 순" label="별점 순" />
-          <Tab value="현재 상영중" label="현재 상영중" />
-          <Tab value="개봉 예정 영화" label="개봉 예정 영화" />
-        </Tabs>
-      </Box>
-      <MovieList>
-        {Movies_data?.results.map(value => {
-          return (
-            <div key={value.id}>
-              <Img src={`${process.env.REACT_APP_IMAGE_URL}${value.poster_path}`} alt="사진" />
-            </div>
-          );
-        })}
-      </MovieList>
-    </Container>
-  );
+  return <Container>{Movies_data?.length > 0 && <MovieList movies={Movies_data} />}</Container>;
 };
 
 export default NowPlaying;

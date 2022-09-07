@@ -1,9 +1,7 @@
-import { Container as MuiContainer } from '@mui/material';
+import { Box as MuiBox } from '@mui/material';
 import styled from 'styled-components';
 
-export const Container = styled(MuiContainer)`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  background-color: gainsboro;
-  padding: 2rem;
+export const Container = styled(MuiBox)`
+  background: ${props => props.theme.colors.black};
+  padding: 40px 20px;
 `;

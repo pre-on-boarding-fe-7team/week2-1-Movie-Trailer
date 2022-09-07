@@ -109,6 +109,8 @@ section {
 body {
   font-family: 나눔스퀘어, 'NanumSquare', sans-serif;
   line-height: 1;
+  color: white;
+  background-color: ${props => props.theme.colors.black};
 }
 ol,
 ul {
@@ -128,9 +130,5 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-}
-body {
-  color: white;
-  background-color: ${props => props.theme.colors.black};
 }
 `;
