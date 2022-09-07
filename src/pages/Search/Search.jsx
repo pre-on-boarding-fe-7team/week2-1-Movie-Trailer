@@ -4,8 +4,7 @@ import { useQuery } from 'react-query';
 import { getSearchMovie } from '../../api/api.js';
 import { Bold, Box, Title } from './Search.style.js';
 import MovieList from '../../components/MovieList/MovieList.jsx';
-import { Backdrop, CircularProgress } from '@mui/material';
-import Loading from '../../common/utils/loading.js';
+import Loading from '../../common/utils/loading';
 
 const Search = () => {
   const { state } = useLocation();
@@ -13,7 +12,7 @@ const Search = () => {
   const { data: movies, status } = useQuery(['searchMovie', query], () => getSearchMovie(query));
 
   if (status === 'loading') {
-    return <Loading />;
+    return Loading;
   }
 
   if (status === 'error') {
