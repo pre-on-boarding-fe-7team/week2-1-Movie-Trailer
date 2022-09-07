@@ -6,13 +6,17 @@ const api = axios.create({
 });
 
 const getMovieDetail = async id => {
-  const response = await api.get(`/movie/${id}`);
+  const response = await api.get(`/movie/${id}`, {
+    params: {
+      language: 'en-US',
+    },
+  });
   return response.data;
 };
 
 const getMovieVideo = async id => {
   const response = await api.get(`/movie/${id}/videos`);
-  return response.data.results[0].key;
+  return response.data.results;
 };
 
 const getMovieTopRated = async () => {
