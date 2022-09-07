@@ -5,7 +5,7 @@ import { AppBar } from './Header.style';
 import { Box, Button, IconButton, Toolbar } from '@mui/material';
 import Logo from './Logo';
 import { ROUTE } from '../../common/utils/constant';
-import { Link } from 'react-router-dom';
+import Link from './Link.style.js';
 
 const pages = [
   { title: 'main', path: ROUTE.MAIN },
