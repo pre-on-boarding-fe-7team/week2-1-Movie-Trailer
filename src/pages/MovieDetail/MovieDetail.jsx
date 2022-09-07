@@ -16,6 +16,7 @@ const MovieDetail = () => {
   const { isLoading: detailLoading, data: movieDetail } = useQuery('movieDetail', () =>
     getMovieDetail(id)
   );
+
   const { isLoading: videoLoading, data: movieVideo } = useQuery('movieVideo', () =>
     getMovieVideo(id)
   );
