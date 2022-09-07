@@ -1,11 +1,28 @@
-import React from 'react';
-import { Container, MyButton } from './Main.style';
-
+// import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Container } from './Main.style';
+import VieodList from './videoList';
 function Main() {
+  const API_URL = 'https://api.themoviedb.org/3';
+  // const apikey = process.env.REACT_APP_API_KEY;
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+    fetch(`${API_URL}/movie/popular?api_key=f57efe3dc1a886a3611eff7cabe98a90`, requestOptions)
+      .then(response => response.json())
+      .then(result => setVideos(result.results))
+      .catch(error => console.info('error', error));
+  }, []);
+
+  console.info(videos);
+
   return (
     <Container>
-      This is MainPage
-      <MyButton>안녕!</MyButton>
+      <VieodList videos={videos} />
     </Container>
   );
 }

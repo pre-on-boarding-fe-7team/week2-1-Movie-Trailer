@@ -2,8 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import { ROUTE } from './common/utils/constant';
 import Main from './pages/Main/Main';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
-import NotFound from './pages/NotFound/NotFound';
 import UpComing from './pages/Upcoming/Upcoming';
+import Search from './pages/Search/Search';
+import TopRatedList from './pages/TopRatedList/TopRatedList';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -11,6 +13,8 @@ function App() {
       <Route path={ROUTE.MAIN} element={<Main />} />
       <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
       <Route path={ROUTE.UP_COMING} element={<UpComing />} />
+      <Route path={ROUTE.SEARCH} element={<Search />} />
+      <Route path={ROUTE.TOP_RATED} element={<TopRatedList />} />
       <Route path={ROUTE.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );

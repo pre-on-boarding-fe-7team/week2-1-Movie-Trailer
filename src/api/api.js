@@ -14,6 +14,7 @@ const get = async endpoint => {
   }
   return await res.json();
 };
+
 const httpClient = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_URL}/movie`,
   params: { api_key: process.env.REACT_APP_API_KEY },
@@ -33,4 +34,10 @@ const getMovieVideo = async id => {
   return response.data.results[0].key;
 };
 
-export { get, getMovieDetail, getMovieVideo };
+
+const getMovieTopRated = async id => {
+  const response = await httpClient.get(`/top_rated`);
+  return response.data.results;
+};
+
+export { get, getMovieDetail, getMovieVideo, getMovieTopRated };
