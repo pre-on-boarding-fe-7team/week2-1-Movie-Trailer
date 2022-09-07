@@ -5,14 +5,21 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import App from './App';
 import { StyledEngineProvider } from '@mui/styled-engine';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { GlobalStyle } from './styles/global-styles';
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </ThemeProvider>
       </StyledEngineProvider>
     </BrowserRouter>
