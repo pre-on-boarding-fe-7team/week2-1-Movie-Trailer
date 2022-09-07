@@ -19,14 +19,14 @@ const getMovieVideo = async id => {
   return response.data.results;
 };
 
-const getMovieTopRated = async () => {
-  const response = await api.get(`/movie/top_rated`);
-  return response.data.results;
+const getMovieTopRated = async query => {
+  const response = await api.get(`/movie/top_rated`, { params: { page: query } });
+  return response.data;
 };
 
 const getMovieNowPlaying = async () => {
   const response = await api.get(`/movie/now_playing`);
-  return response.data.results;
+  return response.data;
 };
 
 const getSearchMovie = async query => {

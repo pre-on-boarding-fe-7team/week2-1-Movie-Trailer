@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import useInfiniteScroll from '../../common/hooks/useInfiniteScroll';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { getMovieTopRated } from '../../api/api';
@@ -6,7 +6,7 @@ import MovieList from '../../components/MovieList/MovieList.jsx';
 import { Container } from './TopRatedList.style.js';
 
 export default function TopRatedList() {
-  const { data: TopRatedList, status } = useQuery('TopRatedList', () => getMovieTopRated());
+  const [data, status] = useInfiniteScroll(getMovieTopRated);
 
   if (status === 'loading') {
     return (
@@ -20,5 +20,11 @@ export default function TopRatedList() {
     return alert('error');
   }
 
-  return <Container>{TopRatedList?.length > 0 && <MovieList movies={TopRatedList} />}</Container>;
+  return (
+    <Container>
+      {data?.pages.map((page, idx) => {
+        return <MovieList key={idx} movies={page} />;
+      })}
+    </Container>
+  );
 }
