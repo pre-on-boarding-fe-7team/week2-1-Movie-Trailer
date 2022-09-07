@@ -1,14 +1,11 @@
-const baseUrl = process.env.REACT_APP_SERVER_URL;
+import axios from 'axios';
 
-const get = async endpoint => {
-  const url = baseUrl + endpoint;
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`${res.status.toString()} Error 인한 요청 실패!`);
-  }
-  const result = await res.json();
+/* 기본 api */
+const api = axios.create({
+  baseURL: process.env.REACT_APP_SERVER_URL,
+});
 
-  return result;
+export const apis = {
+  getMovies: () =>
+    api.get(`/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`),
 };
-
-export { get };
