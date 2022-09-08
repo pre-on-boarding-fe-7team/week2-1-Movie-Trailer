@@ -38,7 +38,7 @@
 
 ### 2) 데모영상
 
-- 영상링크
+- https://drive.google.com/file/d/1IhR215X86wsIY4MeWyDmsb4G2n3OgKSa/view?usp=sharing
 
 ### 3) home page - 이지영
 
