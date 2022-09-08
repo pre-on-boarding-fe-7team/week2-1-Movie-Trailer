@@ -6,11 +6,7 @@ const api = axios.create({
 });
 
 const getMovieDetail = async id => {
-  const response = await api.get(`/movie/${id}`, {
-    params: {
-      language: 'en-US',
-    },
-  });
+  const response = await api.get(`/movie/${id}`);
   return response.data;
 };
 
@@ -30,8 +26,8 @@ const getMovieNowPlaying = async () => {
 };
 
 const getSearchMovie = async query => {
-  const response = await api.get(`/search/movie`, { params: { query: query } });
-  return response.data.results;
+  const response = await api.get(`/search/movie`, { params: query });
+  return response.data;
 };
 
 const getUpcomingMovies = async query => {

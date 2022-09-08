@@ -8,10 +8,10 @@ import { ROUTE } from '../../common/utils/constant';
 import { Link, useLocation } from 'react-router-dom';
 
 const pages = [
-  { title: 'main', path: ROUTE.MAIN },
-  { title: 'upcoming', path: ROUTE.UP_COMING },
-  { title: 'now_playing', path: ROUTE.NOWPLAYING },
-  { title: 'top_rated', path: ROUTE.TOP_RATED },
+  { name: 'popular', title: 'Main', path: ROUTE.MAIN },
+  { name: 'upcoming', title: 'Upcoming', path: ROUTE.UP_COMING },
+  { name: 'now_playing', title: 'Now Playing', path: ROUTE.NOWPLAYING },
+  { name: 'top_rated', title: 'Top Rated', path: ROUTE.TOP_RATED },
 ];
 
 const Header = () => {
@@ -28,11 +28,11 @@ const Header = () => {
             <Logo>Team7</Logo>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              {pages.map(({ title, path }) => (
+              {pages.map(({ name, title, path }) => (
                 <Link
                   key={title}
                   to={path}
-                  className={`${pathRoute === `${title}` ? 'active' : ''}`}
+                  className={`${pathRoute === `${name}` ? 'active' : ''}`}
                 >
                   {title}
                 </Link>

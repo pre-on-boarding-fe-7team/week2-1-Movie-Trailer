@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 // reset css
 export const GlobalStyle = createGlobalStyle`
-@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
-
 html,
 body,
 div,

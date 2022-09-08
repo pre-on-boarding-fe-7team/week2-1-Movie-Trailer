@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
-const useInfiniteScroll = api => {
+const useInfiniteScroll = (api, key) => {
+  const queryKey = key ? [`${api}`, key] : `${api}`;
   const { data, hasNextPage, fetchNextPage, status } = useInfiniteQuery(
-    `${api}`,
+    queryKey,
     ({ pageParam = 1 }) => api(pageParam),
     {
       getNextPageParam: (lastPage, allPages) => {
