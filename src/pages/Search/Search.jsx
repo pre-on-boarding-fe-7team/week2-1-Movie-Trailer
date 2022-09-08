@@ -1,15 +1,21 @@
 import { useLocation } from 'react-router-dom';
-import { useQuery } from 'react-query';
 
 import { getSearchMovie } from '../../api/api.js';
 import { Bold, Box, Title } from './Search.style.js';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import Loading from '../../common/utils/loading';
+import useInfiniteScroll from '../../common/hooks/useInfiniteScroll.js';
 
 const Search = () => {
-  const { state } = useLocation();
-  const query = state ? state.query : '';
-  const { data: movies, status } = useQuery(['searchMovie', query], () => getSearchMovie(query));
+  const {
+    state: { query },
+  } = useLocation();
+  // const query = state ? state.query : '';
+
+  const [data, status] = useInfiniteScroll(
+    pageParam => getSearchMovie({ page: pageParam, query: query }),
+    query
+  );
 
   if (status === 'loading') {
     return Loading;
@@ -21,12 +27,14 @@ const Search = () => {
 
   return (
     <Box>
-      {movies?.length > 0 ? (
+      {data ? (
         <>
           <Title variant="h6">
             "<Bold>{query}</Bold>"에 대한 검색 결과
           </Title>
-          <MovieList movies={movies} />
+          {data?.pages.map((page, idx) => {
+            return <MovieList key={idx} movies={page} />;
+          })}
         </>
       ) : (
         <p>입력하신 "{query}"에 대한 검색 결과가 없습니다.</p>

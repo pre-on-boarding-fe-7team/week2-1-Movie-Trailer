@@ -18,11 +18,7 @@ const ScrollTop = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        setScrollTrigger(true);
-      } else {
-        setScrollTrigger(false);
-      }
+      window.scrollY > 100 ? setScrollTrigger(true) : setScrollTrigger(false);
     });
   }, []);
 
