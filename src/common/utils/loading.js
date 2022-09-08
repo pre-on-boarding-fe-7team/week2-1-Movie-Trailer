@@ -1,17 +1,10 @@
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Backdrop } from '@mui/material';
+
 const Loading = (
-  <div
-    style={{
-      backgroundColor: 'black',
-      width: '100vw',
-      height: '100vh',
-      color: 'white',
-      textAlign: 'center',
-    }}
-  >
-    <CircularProgress />
+  <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
+    <CircularProgress color="inherit" />
     Loading...
-  </div>
+  </Backdrop>
 );
 
 export default Loading;
