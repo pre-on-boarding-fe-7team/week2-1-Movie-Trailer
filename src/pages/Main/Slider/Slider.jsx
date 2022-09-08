@@ -1,5 +1,4 @@
 import React from 'react';
-// import MovieList from '../../components/MovieList/MovieList.jsx';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import nextIcon from '../assets/next.png';
@@ -11,18 +10,20 @@ import {
   Div,
   DivPre,
   StyledSlider,
+  Rate,
+  Title,
 } from '../Slider/Slider.style';
 
 function Sliders({ data }) {
   const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
   const settings = {
-    // infinite: true,
+    infinite: true,
     slidesToShow: 5,
     slidesToScroll: 5,
     speed: 600,
     autoplay: true,
     autoplaySpeed: 4000,
-    rows: 2,
+    rows: 1,
     nextArrow: (
       <Div>
         <img src={nextIcon} />
@@ -35,7 +36,7 @@ function Sliders({ data }) {
     ),
   };
 
-  const videoItems = data.pages[0].map(movie => {
+  const videoItems = data.pages[0].results?.map(movie => {
     return (
       <div key={movie.id}>
         <SlideItem>
@@ -44,7 +45,7 @@ function Sliders({ data }) {
           </Thumnail>
           <div className="postTitle">
             <p>{movie.title}</p>
-            <p>평점 : {movie.vote_average}</p>
+            평점 : <Rate> {movie.vote_average}</Rate>
           </div>
         </SlideItem>
       </div>
@@ -52,6 +53,7 @@ function Sliders({ data }) {
   });
   return (
     <SliderWrapper>
+      <Title>Popular In Theaters</Title>
       <link
         rel="stylesheet"
         type="text/css"

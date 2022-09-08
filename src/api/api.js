@@ -40,7 +40,7 @@ const getUpcomingMovies = async query => {
 };
 const getMoviePopular = async () => {
   const response = await api.get(`/movie/popular`);
-  return response.data.results;
+  return response.data;
 };
 export {
   getMovieDetail,

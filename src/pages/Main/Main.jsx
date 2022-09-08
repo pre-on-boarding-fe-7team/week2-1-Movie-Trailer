@@ -3,10 +3,10 @@ import useInfiniteScroll from '../../common/hooks/useInfiniteScroll';
 import { Container } from './Main.style';
 import { getMoviePopular } from '../../api/api';
 import Slider from './Slider/Slider';
-
+import MovieList from '../../components/MovieList/MovieList.jsx';
 function Main() {
   const [data, status] = useInfiniteScroll(getMoviePopular);
-  console.info(data);
+
   if (status === 'loading') {
     return <>loading...</>;
   }
@@ -17,8 +17,10 @@ function Main() {
 
   return (
     <Container>
-      <div>Popular In Theaters</div>
       <Slider data={data} />
+      {data?.pages.map((page, idx) => {
+        return <MovieList key={idx} movies={page} />;
+      })}
     </Container>
   );
 }
