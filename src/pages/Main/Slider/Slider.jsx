@@ -12,9 +12,10 @@ import {
   Div,
   DivPre,
   StyledSlider,
-  Rate,
   Title,
 } from '../Slider/Slider.style';
+import Star from '../../../components/Star/Star';
+import { ImageListItemBar } from '@mui/material';
 
 function Sliders({ data }) {
   const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
@@ -28,12 +29,12 @@ function Sliders({ data }) {
     rows: 1,
     nextArrow: (
       <Div>
-        <img src={nextIcon} />
+        <img src={nextIcon} alt="다음 버튼" />
       </Div>
     ),
     prevArrow: (
       <DivPre>
-        <img src={prevIcon} />
+        <img src={prevIcon} alt="이전 버튼" />
       </DivPre>
     ),
   };
@@ -44,11 +45,17 @@ function Sliders({ data }) {
         <Link to={`${ROUTE.MOVIE}/${movie.id}`}>
           <SlideItem>
             <Thumnail>
-              <img className="thumbnailImg" src={IMAGE_BASE_URL + `${movie.backdrop_path}`}></img>
+              <img
+                className="thumbnailImg"
+                src={IMAGE_BASE_URL + `${movie.backdrop_path}`}
+                alt={movie.title}
+              ></img>
             </Thumnail>
             <div className="postTitle">
-              <p>{movie.title}</p>
-              평점 : <Rate> {movie.vote_average}</Rate>
+              <ImageListItemBar
+                title={movie.title}
+                subtitle={<Star value={movie.vote_average / 2} />}
+              />
             </div>
           </SlideItem>{' '}
         </Link>
