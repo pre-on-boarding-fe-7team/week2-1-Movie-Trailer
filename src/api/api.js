@@ -34,7 +34,10 @@ const getUpcomingMovies = async query => {
   const response = await api.get(`/movie/upcoming`, { params: { page: query } });
   return response.data;
 };
-
+const getMoviePopular = async () => {
+  const response = await api.get(`/movie/popular`);
+  return response.data;
+};
 export {
   getMovieDetail,
   getMovieVideo,
@@ -42,4 +45,5 @@ export {
   getMovieNowPlaying,
   getSearchMovie,
   getUpcomingMovies,
+  getMoviePopular,
 };
