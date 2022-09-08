@@ -4,7 +4,8 @@ import Slider from 'react-slick';
 export const SliderWrapper = styled.div`
   margin: 0 auto;
   padding: 0px 40px 40px 40px;
-  width: 1100px;
+  max-width: 1100px;
+  width: 100%;
   height: 400px;
 `;
 
