@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { ROUTE } from './common/utils/constant';
 import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
@@ -15,6 +15,7 @@ function App() {
     <>
       <Header />
       <Routes>
+        <Route path="*" element={<Navigate to={ROUTE.MAIN} />} />
         <Route path={ROUTE.MAIN} element={<Main />} />
         <Route path={ROUTE.NOWPLAYING} element={<NowPlaying />} />
         <Route path={ROUTE.MOVIE_ID} element={<MovieDetail />} />
