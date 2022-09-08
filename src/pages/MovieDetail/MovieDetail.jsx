@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import {
@@ -17,6 +17,10 @@ import { getImage } from '../../common/utils/image';
 
 const MovieDetail = () => {
   const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { data: movieDetail, isLoading: detailLoading } = useQuery('movieDetail', () =>
     getMovieDetail(id)

@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const Section = styled.section`
-  border: 2px solid red;
+  /* border: 2px solid red; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
