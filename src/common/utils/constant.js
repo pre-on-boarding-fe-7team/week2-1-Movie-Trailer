@@ -1,7 +1,7 @@
 export const ROUTE = {
-  MAIN: '/',
-  UP_COMING: '/up-coming',
-  NOWPLAYING: '/nowplaying',
+  MAIN: '/movie/popular',
+  UP_COMING: '/movie/upcoming',
+  NOWPLAYING: '/movie/now_playing',
   NOT_FOUND: '*',
   MOVIE: '/movie',
   MOVIE_ID: '/movie/:id',

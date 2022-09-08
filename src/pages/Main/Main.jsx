@@ -1,13 +1,12 @@
 import React from 'react';
+import useInfiniteScroll from '../../common/hooks/useInfiniteScroll';
 import { Container } from './Main.style';
-
-import { useQuery } from 'react-query';
 import { getMoviePopular } from '../../api/api';
 import Slider from './Slider/Slider';
 
 function Main() {
-  const { data: GetMoviePopular, status } = useQuery('GetMoviePopular', () => getMoviePopular());
-
+  const [data, status] = useInfiniteScroll(getMoviePopular);
+  console.info(data);
   if (status === 'loading') {
     return <>loading...</>;
   }
@@ -19,7 +18,7 @@ function Main() {
   return (
     <Container>
       <div>Popular In Theaters</div>
-      <Slider GetMoviePopular={GetMoviePopular} />
+      <Slider data={data} />
     </Container>
   );
 }

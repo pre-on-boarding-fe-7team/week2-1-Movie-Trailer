@@ -1,4 +1,5 @@
 import React from 'react';
+// import MovieList from '../../components/MovieList/MovieList.jsx';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import nextIcon from '../assets/next.png';
@@ -12,7 +13,7 @@ import {
   StyledSlider,
 } from '../Slider/Slider.style';
 
-function Sliders({ GetMoviePopular }) {
+function Sliders({ data }) {
   const IMAGE_BASE_URL = 'http://image.tmdb.org/t/p/w300';
   const settings = {
     // infinite: true,
@@ -34,7 +35,7 @@ function Sliders({ GetMoviePopular }) {
     ),
   };
 
-  const videoItems = GetMoviePopular.map(movie => {
+  const videoItems = data.pages[0].map(movie => {
     return (
       <div key={movie.id}>
         <SlideItem>

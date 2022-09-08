@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   ${props => props.theme.common.flexCenter};
+  margin-bottom: 12px;
 `;
 
 export const MovieImageList = styled(ImageList)`
