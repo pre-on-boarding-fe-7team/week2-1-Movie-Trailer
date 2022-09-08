@@ -19,7 +19,6 @@ const paddings = {
   xxl: pixelToRem(16),
   xxxl: pixelToRem(18),
 };
-
 const margins = {
   small: pixelToRem(8),
   base: pixelToRem(10),

@@ -138,12 +138,3 @@ API 명세
    - 사용 API: /search/movie
 
 </details>
-<details><summary>
-폴더구조
-</summary>
-
-```
-hihi
-```
-
-</details>

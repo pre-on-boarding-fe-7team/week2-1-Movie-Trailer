@@ -26,15 +26,18 @@ const getMovieNowPlaying = async () => {
 };
 
 const getSearchMovie = async query => {
-  const response = await api.get(`/search/movie`, { params: { query: query } });
-  return response.data.results;
+  const response = await api.get(`/search/movie`, { params: query });
+  return response.data;
 };
 
 const getUpcomingMovies = async query => {
   const response = await api.get(`/movie/upcoming`, { params: { page: query } });
   return response.data;
 };
-
+const getMoviePopular = async () => {
+  const response = await api.get(`/movie/popular`);
+  return response.data;
+};
 export {
   getMovieDetail,
   getMovieVideo,
@@ -42,4 +45,5 @@ export {
   getMovieNowPlaying,
   getSearchMovie,
   getUpcomingMovies,
+  getMoviePopular,
 };

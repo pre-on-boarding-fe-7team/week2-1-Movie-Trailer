@@ -1,27 +1,27 @@
-// import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import useInfiniteScroll from '../../common/hooks/useInfiniteScroll';
 import { Container } from './Main.style';
-import VieodList from './videoList';
+import { getMoviePopular } from '../../api/api';
+import Slider from './Slider/Slider';
+import Loading from '../../common/utils/loading';
+import MovieList from '../../components/MovieList/MovieList.jsx';
 function Main() {
-  const API_URL = 'https://api.themoviedb.org/3';
-  const [videos, setVideos] = useState([]);
+  const [data, status] = useInfiniteScroll(getMoviePopular);
 
-  useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
-    fetch(`${API_URL}/movie/popular?api_key=f57efe3dc1a886a3611eff7cabe98a90`, requestOptions)
-      .then(response => response.json())
-      .then(result => setVideos(result.results))
-      .catch(error => console.info('error', error));
-  }, []);
+  if (status === 'loading') {
+    return Loading;
+  }
 
-  console.info(videos);
+  if (status === 'error') {
+    return alert('error');
+  }
 
   return (
     <Container>
-      <VieodList videos={videos} />
+      <Slider data={data} />
+      {data?.pages.map(page => {
+        return <MovieList key={page.id} movies={page} />;
+      })}
     </Container>
   );
 }
