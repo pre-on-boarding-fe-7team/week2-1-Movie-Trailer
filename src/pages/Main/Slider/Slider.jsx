@@ -3,6 +3,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import nextIcon from '../assets/next.png';
 import prevIcon from '../assets/prev.png';
+import { ROUTE } from '../../../common/utils/constant';
+import Link from '../../../components/Header/Link.style';
 import {
   SliderWrapper,
   SlideItem,
@@ -39,15 +41,17 @@ function Sliders({ data }) {
   const videoItems = data.pages[0].results?.map(movie => {
     return (
       <div key={movie.id}>
-        <SlideItem>
-          <Thumnail>
-            <img className="thumbnailImg" src={IMAGE_BASE_URL + `${movie.backdrop_path}`}></img>
-          </Thumnail>
-          <div className="postTitle">
-            <p>{movie.title}</p>
-            평점 : <Rate> {movie.vote_average}</Rate>
-          </div>
-        </SlideItem>
+        <Link to={`${ROUTE.MOVIE}/${movie.id}`}>
+          <SlideItem>
+            <Thumnail>
+              <img className="thumbnailImg" src={IMAGE_BASE_URL + `${movie.backdrop_path}`}></img>
+            </Thumnail>
+            <div className="postTitle">
+              <p>{movie.title}</p>
+              평점 : <Rate> {movie.vote_average}</Rate>
+            </div>
+          </SlideItem>{' '}
+        </Link>
       </div>
     );
   });
