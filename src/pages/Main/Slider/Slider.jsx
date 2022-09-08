@@ -37,6 +37,14 @@ function Sliders({ data }) {
         <img src={prevIcon} alt="이전 버튼" />
       </DivPre>
     ),
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   };
 
   const videoItems = data.pages[0].results?.map(movie => {
@@ -68,7 +76,7 @@ function Sliders({ data }) {
       <link
         rel="stylesheet"
         type="text/css"
-        charset="UTF-8"
+        charSet="UTF-8"
         href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
       />
       <link
