@@ -6,11 +6,7 @@ const api = axios.create({
 });
 
 const getMovieDetail = async id => {
-  const response = await api.get(`/movie/${id}`, {
-    params: {
-      language: 'en-US',
-    },
-  });
+  const response = await api.get(`/movie/${id}`);
   return response.data;
 };
 

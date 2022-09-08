@@ -9,6 +9,7 @@ export const AppBar = styled(MuiAppBar)`
     padding: 6px 4px;
     margin: 0 8px;
     transition: border 0.2s ease-in-out;
+    color: ${props => props.theme.colors.white};
 
     &.active {
       color: ${props => props.theme.colors.yellow};
