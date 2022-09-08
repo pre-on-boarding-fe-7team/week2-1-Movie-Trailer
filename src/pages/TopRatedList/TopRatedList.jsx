@@ -18,7 +18,7 @@ export default function TopRatedList() {
   return (
     <Container>
       {data?.pages.map((page, idx) => {
-        return <MovieList key={idx} movies={page} />;
+        return <MovieList key={page.id} movies={page} />;
       })}
     </Container>
   );
