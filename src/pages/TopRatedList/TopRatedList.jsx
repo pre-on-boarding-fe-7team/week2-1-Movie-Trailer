@@ -4,16 +4,13 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { getMovieTopRated } from '../../api/api';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import { Container } from './TopRatedList.style.js';
+import Loading from '../../common/utils/loading';
 
 export default function TopRatedList() {
   const [data, status] = useInfiniteScroll(getMovieTopRated);
 
   if (status === 'loading') {
-    return (
-      <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={true}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    );
+    return Loading;
   }
 
   if (status === 'error') {
